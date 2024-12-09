@@ -1,0 +1,105 @@
+﻿@inject OutputLog Logger;
+
+<h3>LifeCycle Events</h3>
+
+@foreach (var line in Logger.Data)
+{
+    @line
+    <br />
+}
+
+@code {
+  private bool _rendered;
+  private bool _shouldRender;
+  DateTime _created;
+  private int _counter;
+
+  [Parameter]
+  public int Counter
+  {
+    get => _counter;
+    set
+    {
+      _counter = value;
+      Logger.Log("-----------");
+      Logger.Log($"Counter setter: set to {_counter}");
+    }
+  }
+  public override Task SetParametersAsync(ParameterView parameters)
+  {
+    Logger.Log("-----------");
+    Logger.Log("SetParametersSetAsync called");
+    _shouldRender = true;
+    if (parameters.TryGetValue(nameof(Counter), out int counter))
+    {
+      // ignore odd values
+      if (counter % 2 == 0)
+      {
+        _shouldRender = false;
+      }
+    }
+    return base.SetParametersAsync(parameters);
+  }
+  protected override void OnInitialized()
+  {
+    _rendered = false;
+    Logger.Log("-----------");
+    Logger.Log("OnInitialized In");
+    base.OnInitialized();
+    Logger.Log("OnInitialized Out");
+  }
+  protected override void OnParametersSet()
+  {
+    Logger.Log("-----------");
+    Logger.Log("OnParametersSet In");
+    base.OnParametersSet();
+    Logger.Log("OnParametersSet Out");
+  }
+  public void Dispose() => Logger.Log("Disposed");
+
+  protected override bool ShouldRender()
+  {
+    Logger.Log("-----------");
+    Logger.Log($"ShouldRender In");
+    var result = base.ShouldRender();
+    Logger.Log($"ShouldRender: {result}");
+    Logger.Log($"ShouldRender Out");
+    Logger.Log($"******************** PAGE END ************************");
+    return result;
+  }
+  protected override void OnAfterRender(bool firstRender)
+  {
+    Logger.Log("-----------");
+    Logger.Log($"OnAfterRender In First:{firstRender}");
+    base.OnAfterRender(firstRender);
+    Logger.Log($"OnAfterRender Out First:{firstRender}");
+    if (!_rendered)
+    {
+      _rendered = true;
+      StateHasChanged();
+    }
+  }
+  //Optionally add in the async versions
+    
+  //protected override async Task OnInitializedAsync()
+  //{
+  //  Logger.Log("-----------");
+  //  Logger.Log("OnInitializedAsync in called");
+  //  await base.OnInitializedAsync();
+  //  Logger.Log("OnInitializedAsync out called");
+  //}
+  //protected override async Task OnParametersSetAsync()
+  //{
+  //  Logger.Log("-----------");
+  //  Logger.Log("OnParametersSetAsync in called");
+  //  await base.OnParametersSetAsync();
+  //  Logger.Log("OnParametersSetAsync out called");
+  //}
+  //protected override async Task OnAfterRenderAsync(bool firstRender)
+  //{
+  //  Logger.Log("-----------");
+  //  Logger.Log($"OnAfterRenderAsync in FirstRender = {firstRender}");
+  //  await base.OnAfterRenderAsync(firstRender);
+  //  Logger.Log($"OnAfterRenderAsync out FirstRender = {firstRender}");
+  //
+}
