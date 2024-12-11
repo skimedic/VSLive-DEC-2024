@@ -13,11 +13,11 @@ dotnet add AutoLot.Api package Microsoft.EntityFrameworkCore.SqlServer -v [9.0.*
 dotnet add AutoLot.Api package Microsoft.EntityFrameworkCore.Design -v [9.0.*,10.0)  
 dotnet add AutoLot.Api package Microsoft.VisualStudio.Threading.Analyzers -v [17.*,18.0)
 dotnet add AutoLot.Api package Microsoft.VisualStudio.Web.CodeGeneration.Design -v [9.0.*,10.0)
-dotnet add AutoLot.Api package Swashbuckle.AspNetCore -v [6.*,7.0)
-dotnet add AutoLot.Api package Swashbuckle.AspNetCore.Annotations -v [6.*,7.0)
-dotnet add AutoLot.Api package Swashbuckle.AspNetCore.Swagger -v [6.*,7.0)
-dotnet add AutoLot.Api package Swashbuckle.AspNetCore.SwaggerGen -v [6.*,7.0)
-dotnet add AutoLot.Api package Swashbuckle.AspNetCore.SwaggerUI -v [6.*,7.0)
+dotnet add AutoLot.Api package Swashbuckle.AspNetCore -v [7.*,8.0)
+dotnet add AutoLot.Api package Swashbuckle.AspNetCore.Annotations -v [7.*,8.0)
+dotnet add AutoLot.Api package Swashbuckle.AspNetCore.Swagger -v [7.*,8.0)
+dotnet add AutoLot.Api package Swashbuckle.AspNetCore.SwaggerGen -v [7.*,8.0)
+dotnet add AutoLot.Api package Swashbuckle.AspNetCore.SwaggerUI -v [7.*,8.0)
 dotnet add AutoLot.Api package System.Text.Json -v [9.0.*,10.0)
 
 read -p "Press Enter to continue" </dev/ttyc
