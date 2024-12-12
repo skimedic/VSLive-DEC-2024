@@ -34,13 +34,17 @@ public class HomeController(IAppLogging<HomeController> logger) : Controller
         };
         return View(vm);
     }
+
     [HttpPost]
-    public IActionResult Validation(AddToCartViewModelMvc viewModel)
+    public async Task<IActionResult> ValidationAsync(AddToCartViewModelMvc viewModel)
     {
         if (!ModelState.IsValid)
         {
             return View(viewModel);
         }
+
+        await Task.Delay(5000);
+
         return RedirectToAction(nameof(Validation), nameof(HomeController).RemoveController());
     }
 

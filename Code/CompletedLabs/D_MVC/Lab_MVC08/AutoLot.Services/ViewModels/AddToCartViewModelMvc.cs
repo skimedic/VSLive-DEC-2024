@@ -11,6 +11,6 @@ public class AddToCartViewModelMvc : AddToCartViewModelBase
 {
     [Required]
     [MustBeGreaterThanZero]
-    [MustNotBeGreaterThan(nameof(StockQuantity), prefix: "Entity")]
+    [MustNotBeGreaterThan(nameof(StockQuantity))]
     public int Quantity { get; set; }
 }
