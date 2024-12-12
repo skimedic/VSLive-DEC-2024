@@ -40,7 +40,10 @@
     <script type="text/javascript" language="javascript">
         function reValidate(input) {
             const form = $("#validationForm");
-            form.validate().element(input);
+            var input1 = $("#Quantity");
+            var input2 = $("#StockQuantity");
+            form.validate().element(input1);
+            form.validate().element(input2);
         }
 
         $(document).ready(function() {
