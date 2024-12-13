@@ -8,6 +8,8 @@
 namespace AutoLot.Api.Controllers;
 
 [ApiController]
+[AdvertiseApiVersions("1.5",Deprecated = true)]
+[AdvertiseApiVersions("2.0-Beta")]
 [ApiVersion("1.0")]
 [Route("api/[controller]")]
 [Route("api/v{version:apiVersion}/[controller]")]

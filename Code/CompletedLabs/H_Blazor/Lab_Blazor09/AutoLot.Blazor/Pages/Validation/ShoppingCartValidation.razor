@@ -26,18 +26,22 @@
             <InputNumber id="@nameof(AddToCartViewModel.Quantity)" class="form-control" @bind-Value="_entity.Quantity" />
             <ValidationMessage For="() => _entity.Quantity"/>
         </div>
-        <button class="mt-3" type="submit" disabled="@formInvalid">Process Order 1</button>
+        <button class="mt-3" type="submit" disabled="@(formInvalid && buttonOneEnabled)">@buttonOneLabel</button>
         <button class="mt-3" type="submit">Process Order 2</button>
     </EditForm>
     <div class="mt-3 @messageClass">@message</div>
 </div>
 
 @code {
+    private const string normalButtonLabel = "Process Order 1";
+    private const string processingButtonLabel = "Processing...";
+    private bool buttonOneEnabled = true;
     private bool formInvalid = true;
     EditContext editContext;
     private AddToCartViewModel _entity;
     private string message = "";
     private string messageClass = "";
+    private string buttonOneLabel = normalButtonLabel;
 
     protected override void OnInitialized()
     {
@@ -65,8 +69,12 @@
         }
     }
 
-    public void ProcessOrder()
+    public async Task ProcessOrder()
     {
+        buttonOneEnabled = false;
+        buttonOneLabel = processingButtonLabel;
+        await Task.Delay(5000);
+        buttonOneLabel = normalButtonLabel;
         message = "Order Processed";
         messageClass = "alert alert-success";
     }

@@ -40,7 +40,7 @@ public class CarsController(IAppLogging<CarsController> logger, ICarRepo repo)
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(200, "The execution was successful")]
     [SwaggerResponse(400, "The request was invalid")]
-    [ApiVersion("0.5", Deprecated = true)]
+    [ApiVersion("1.5", Deprecated = true)]
     [HttpGet]
     public ActionResult<IEnumerable<Car>> GetAllBad()
     {
